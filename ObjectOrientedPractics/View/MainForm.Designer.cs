@@ -28,35 +28,86 @@
         /// </summary>
         private void InitializeComponent()
         {
-            splitContainer1 = new SplitContainer();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-            splitContainer1.SuspendLayout();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            itemTab1 = new ObjectOrientedPractics.View.Tabs.ItemsTab();
+            tabPage2 = new TabPage();
+            customerTab1 = new ObjectOrientedPractics.View.Tabs.CustomersTab();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
             SuspendLayout();
             // 
-            // splitContainer1
+            // tabControl1
             // 
-            splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(0, 0);
-            splitContainer1.Name = "splitContainer1";
-            splitContainer1.Size = new Size(827, 547);
-            splitContainer1.SplitterDistance = 352;
-            splitContainer1.TabIndex = 0;
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(784, 561);
+            tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(itemTab1);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(776, 533);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Item";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // itemTab1
+            // 
+            itemTab1.Dock = DockStyle.Fill;
+            itemTab1.Location = new Point(3, 3);
+            itemTab1.Name = "itemTab1";
+            itemTab1.Size = new Size(770, 527);
+            itemTab1.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(customerTab1);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(776, 533);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Customer";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // customerTab1
+            // 
+            customerTab1.Dock = DockStyle.Fill;
+            customerTab1.Location = new Point(3, 3);
+            customerTab1.Name = "customerTab1";
+            customerTab1.Size = new Size(770, 527);
+            customerTab1.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(827, 547);
-            Controls.Add(splitContainer1);
+            ClientSize = new Size(784, 561);
+            Controls.Add(tabControl1);
             Name = "MainForm";
-            Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Object Oriented Practics";
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private SplitContainer splitContainer1;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private View.Tabs.ItemsTab itemTab1;
+        private View.Tabs.CustomersTab customerTab1;
     }
 }

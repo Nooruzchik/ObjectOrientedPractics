@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Services;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,56 +11,101 @@ namespace ObjectOrientedPractics.Model
 {
     internal class Item
     {
-
+        /// <summary>
+        /// id.
+        /// </summary>
         private readonly int _id;
+
+        /// <summary>
+        /// имя.
+        /// </summary>
         private string _name; 
+
+        /// <summary>
+        /// информация.
+        /// </summary>
         private string _info;
+
+        /// <summary>
+        /// стоимость.
+        /// </summary>
         private double _cost;
 
+        /// <summary>
+        /// возвращает id.
+        /// </summary>
+        public int Id { get { return _id; } }
+
+        /// <summary>
+        /// возвращает и задает имя.
+        /// </summary>
         public string Name
         {
             get { return _name; }
             set
             {
-                if (_name.Length < 1 || _name.Length > 200)
-                {
-                    throw new ArgumentException("Длина имени должна быть от 1 до 200 символов");
-                }
+                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
                 _name = value;
             }
         }
 
+        /// <summary>
+        /// возвращает и задает информацию.
+        /// </summary>
         public string Info
         {
             get { return _info; }
             set
             {
-                if (_name.Length > 1000)
-                {
-                    throw new ArgumentException("Длинна описание товара может быть не больше 1000 символов"); 
-                }
+                ValueValidator.AssertStringOnLength(value, 1000, nameof(Info));
                 _info = value;
             }
         }
 
+
+        /// <summary>
+        /// возвращает и задает стоимость.
+        /// </summary>
         public double Cost
         {
             get { return _cost; }
             set
             {
-                if (_cost < 0 || _cost > 100000)
+                if (value < 0 || value > 100000)
                 {
                     throw new ArgumentException("Цена товара может быть от 0 до 100000");
                 }
+
                 _cost = value;
             }
         }
 
-        public Item(string _name,  string _info, double _cost)
+
+        /// <summary>
+        /// сохдает экземпляр <see cref="Item"/>
+        /// </summary>
+        public Item()
         {
-            Name = _name;
-            Info = _info;
-            Cost = _cost;
+            _id = IdGenerator.GetNextId();
+        }
+
+        /// <summary>
+        /// создает экемпляр <see cref="Item"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="info"></param>
+        /// <param name="cost"></param>
+        public Item(string name,  string info, double cost)
+        {
+            Name = name;
+            Info = info;
+            Cost = cost;
+            _id = IdGenerator.GetNextId();
+        }
+
+        public override string ToString()
+        {
+            return $"{Id}: {Name} - {Cost}руб";
         }
     }
 }

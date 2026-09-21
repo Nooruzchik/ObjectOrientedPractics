@@ -1,44 +1,87 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ObjectOrientedPractics.Model
 {
     internal class Customer
     {
+        /// <summary>
+        /// id.
+        /// </summary>
         private readonly int _id;
+
+        /// <summary>
+        /// имя. 
+        /// </summary>
         private string _fullname;
+
+        /// <summary>
+        /// адрес.
+        /// </summary>
         private string _address;
 
+        /// <summary>
+        /// возварщает id.
+        /// </summary>
+        public int Id { get { return _id; } }
 
+
+        /// <summary>
+        /// возвращает и задает имя.
+        /// </summary>
         public string FullName
         {
-            get {  return _fullname; }
+            get { return _fullname; }
             set
             {
-                if (_fullname.Length > 200)
-                    throw new ArgumentException("ФИО не должно превыышать 200 сим");
+                ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
                 _fullname = value;
             }
         }
 
+        /// <summary>
+        /// возвращает и задает адрес.
+        /// </summary>
         public string Address
         {
             get { return _address; }
             set
             {
-                if (_address.Length > 500)
-                    throw new ArgumentException("Адреес не должен превышать 500 сим");
+                ValueValidator.AssertStringOnLength(value, 500, nameof(Address));
                 _address = value;
             }
         }
 
-        public Customer(string _fullname, string _address)
+        /// <summary>
+        /// создает экземпляр <see cref="Customer"/>
+        /// </summary>
+        public Customer()
         {
-            FullName = _fullname;
-            Address = _address;
+            _id = IdGenerator.GetNextId();
+        }
+
+
+        /// <summary>
+        /// создает экземпляр <see cref="Customer"/>
+        /// </summary>
+        /// <param name="fullname">имя товара</param>
+        /// <param name="address">авдрес товара</param>
+        public Customer(string fullname, string address)
+        {
+            FullName = fullname;
+            Address = address;
+            _id = IdGenerator.GetNextId();
+        }
+
+        public override string ToString()
+        {
+            return $"{Id}: {FullName} - {Address}";
         }
     }
 }
