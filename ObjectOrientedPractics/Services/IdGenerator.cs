@@ -14,4 +14,3 @@ public static class IdGenerator
         return _id++;
     }
 }
-

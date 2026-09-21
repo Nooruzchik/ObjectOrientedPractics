@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// имя.
         /// </summary>
-        private string _name; 
+        private string _name;
 
         /// <summary>
         /// информация.
@@ -95,7 +95,7 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name"></param>
         /// <param name="info"></param>
         /// <param name="cost"></param>
-        public Item(string name,  string info, double cost)
+        public Item(string name, string info, double cost)
         {
             Name = name;
             Info = info;

@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,6 +71,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _currentItem = _items[ItemsListBox.SelectedIndex];
 
+            IdTextBox.Text = _currentItem.Id.ToString();
             NameTextBox.Text = _currentItem.Name;
             CostTextBox.Text = _currentItem.Cost.ToString();
             DescriptionTextBox.Text = _currentItem.Info;

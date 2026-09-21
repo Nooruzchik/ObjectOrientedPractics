@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,6 +55,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _currentCustomer = _customers[CustomersListBox.SelectedIndex];
 
+            IdTextBox.Text = _currentCustomer.Id.ToString();
             NameTextBox.Text = _currentCustomer.FullName;
             AddressTextBox.Text = _currentCustomer.Address;
         }
@@ -105,7 +107,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            if (_currentCustomer== null)
+            if (_currentCustomer == null)
             {
                 MessageBox.Show("Выберите книгу для редактирования.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;

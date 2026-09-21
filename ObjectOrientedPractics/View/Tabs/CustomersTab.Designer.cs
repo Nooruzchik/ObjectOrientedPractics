@@ -33,6 +33,7 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             AddButton = new Button();
             RemoveButton = new Button();
+            EditButton = new Button();
             CustomersListBox = new ListBox();
             CustomersLabel = new Label();
             panel2 = new Panel();
@@ -45,7 +46,6 @@
             NameLabel = new Label();
             IdLabel = new Label();
             SelectedCustomersLabel = new Label();
-            EditButton = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -82,7 +82,7 @@
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            tableLayoutPanel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel2.ColumnCount = 3;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
@@ -118,6 +118,17 @@
             RemoveButton.Text = "Remove";
             RemoveButton.UseVisualStyleBackColor = true;
             RemoveButton.Click += RemoveButton_Click;
+            // 
+            // EditButton
+            // 
+            EditButton.Dock = DockStyle.Fill;
+            EditButton.Location = new Point(207, 3);
+            EditButton.Name = "EditButton";
+            EditButton.Size = new Size(98, 44);
+            EditButton.TabIndex = 2;
+            EditButton.Text = "Edit";
+            EditButton.UseVisualStyleBackColor = true;
+            EditButton.Click += EditButton_Click;
             // 
             // CustomersListBox
             // 
@@ -245,17 +256,6 @@
             SelectedCustomersLabel.Size = new Size(119, 15);
             SelectedCustomersLabel.TabIndex = 0;
             SelectedCustomersLabel.Text = "Selected Customer";
-            // 
-            // EditButton
-            // 
-            EditButton.Dock = DockStyle.Fill;
-            EditButton.Location = new Point(207, 3);
-            EditButton.Name = "EditButton";
-            EditButton.Size = new Size(98, 44);
-            EditButton.TabIndex = 2;
-            EditButton.Text = "Edit";
-            EditButton.UseVisualStyleBackColor = true;
-            EditButton.Click += EditButton_Click;
             // 
             // CustomersTab
             // 
