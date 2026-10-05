@@ -37,6 +37,11 @@ namespace ObjectOrientedPractics.Model
         public int Id { get { return _id; } }
 
         /// <summary>
+        /// Возвращает и задаёт категорию товара.
+        /// </summary>
+        public Category Category { get; set; }
+
+        /// <summary>
         /// возвращает и задает имя.
         /// </summary>
         public string Name
@@ -95,11 +100,13 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name"></param>
         /// <param name="info"></param>
         /// <param name="cost"></param>
-        public Item(string name, string info, double cost)
+        /// <param name="category">Категория товара.</param>
+        public Item(string name, string info, double cost, Category category)
         {
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
             _id = IdGenerator.GetNextId();
         }
 

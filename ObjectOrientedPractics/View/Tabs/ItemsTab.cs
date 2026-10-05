@@ -37,7 +37,8 @@ namespace ObjectOrientedPractics.View.Tabs
             string name = NameTextBox.Text;
             string info = DescriptionTextBox.Text;
 
-            Item item = new Item(name, info, cost);
+            Item item = new Item(name, info, cost, Category.Electronics);
+
 
             _items.Add(item);
             ItemsListBox.Items.Add(item);

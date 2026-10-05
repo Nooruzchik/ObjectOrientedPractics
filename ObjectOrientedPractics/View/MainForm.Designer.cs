@@ -46,7 +46,7 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(784, 561);
+            tabControl1.Size = new Size(785, 598);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -55,7 +55,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(776, 533);
+            tabPage1.Size = new Size(777, 570);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Item";
             tabPage1.UseVisualStyleBackColor = true;
@@ -65,7 +65,7 @@
             itemTab1.Dock = DockStyle.Fill;
             itemTab1.Location = new Point(3, 3);
             itemTab1.Name = "itemTab1";
-            itemTab1.Size = new Size(770, 527);
+            itemTab1.Size = new Size(771, 564);
             itemTab1.TabIndex = 0;
             // 
             // tabPage2
@@ -91,7 +91,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(784, 561);
+            ClientSize = new Size(785, 598);
             Controls.Add(tabControl1);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
