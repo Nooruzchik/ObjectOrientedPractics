@@ -23,6 +23,9 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+
+            // Заполняем ComboBox значениями перечисления Category
+            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
         }
 
         private void AddButton_click(object sender, EventArgs e)
@@ -37,7 +40,7 @@ namespace ObjectOrientedPractics.View.Tabs
             string name = NameTextBox.Text;
             string info = DescriptionTextBox.Text;
 
-            Item item = new Item(name, info, cost, Category.Electronics);
+            Item item = new Item(name, info, cost, (Category)CategoryComboBox.SelectedItem);
 
 
             _items.Add(item);
@@ -76,6 +79,7 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.Text = _currentItem.Name;
             CostTextBox.Text = _currentItem.Cost.ToString();
             DescriptionTextBox.Text = _currentItem.Info;
+            CategoryComboBox.SelectedItem = _currentItem.Category;
         }
 
         private bool ValidateCost()
@@ -130,6 +134,7 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.Clear();
             CostTextBox.Clear();
             DescriptionTextBox.Clear();
+            CategoryComboBox.SelectedIndex = -1;
 
             NameTextBox.BackColor = Color.White;
             CostTextBox.BackColor = Color.White;
@@ -155,6 +160,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentItem.Name = NameTextBox.Text;
                 _currentItem.Info = DescriptionTextBox.Text;
                 _currentItem.Cost = double.Parse(CostTextBox.Text);
+                _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
 
 
                 int index = ItemsListBox.SelectedIndex;
