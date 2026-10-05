@@ -39,13 +39,12 @@
             panel2 = new Panel();
             tableLayoutPanel3 = new TableLayoutPanel();
             panel3 = new Panel();
-            AddressTextBox = new TextBox();
             NameTextBox = new TextBox();
             IdTextBox = new TextBox();
-            AddressLabel = new Label();
             NameLabel = new Label();
             IdLabel = new Label();
             SelectedCustomersLabel = new Label();
+            addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -57,8 +56,8 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34.5F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65.5F));
             tableLayoutPanel1.Controls.Add(panel1, 0, 0);
             tableLayoutPanel1.Controls.Add(panel2, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
@@ -77,7 +76,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(314, 594);
+            panel1.Size = new Size(270, 594);
             panel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -94,7 +93,7 @@
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(308, 50);
+            tableLayoutPanel2.Size = new Size(264, 50);
             tableLayoutPanel2.TabIndex = 2;
             // 
             // AddButton
@@ -102,7 +101,7 @@
             AddButton.Dock = DockStyle.Fill;
             AddButton.Location = new Point(3, 3);
             AddButton.Name = "AddButton";
-            AddButton.Size = new Size(96, 44);
+            AddButton.Size = new Size(82, 44);
             AddButton.TabIndex = 0;
             AddButton.Text = "Add";
             AddButton.UseVisualStyleBackColor = true;
@@ -111,9 +110,9 @@
             // RemoveButton
             // 
             RemoveButton.Dock = DockStyle.Fill;
-            RemoveButton.Location = new Point(105, 3);
+            RemoveButton.Location = new Point(91, 3);
             RemoveButton.Name = "RemoveButton";
-            RemoveButton.Size = new Size(96, 44);
+            RemoveButton.Size = new Size(82, 44);
             RemoveButton.TabIndex = 1;
             RemoveButton.Text = "Remove";
             RemoveButton.UseVisualStyleBackColor = true;
@@ -122,9 +121,9 @@
             // EditButton
             // 
             EditButton.Dock = DockStyle.Fill;
-            EditButton.Location = new Point(207, 3);
+            EditButton.Location = new Point(179, 3);
             EditButton.Name = "EditButton";
-            EditButton.Size = new Size(98, 44);
+            EditButton.Size = new Size(82, 44);
             EditButton.TabIndex = 2;
             EditButton.Text = "Edit";
             EditButton.UseVisualStyleBackColor = true;
@@ -138,7 +137,7 @@
             CustomersListBox.ItemHeight = 15;
             CustomersListBox.Location = new Point(3, 27);
             CustomersListBox.Name = "CustomersListBox";
-            CustomersListBox.Size = new Size(308, 509);
+            CustomersListBox.Size = new Size(264, 509);
             CustomersListBox.TabIndex = 1;
             CustomersListBox.SelectedIndexChanged += CurtomersListBox_SelectedIndexChanged;
             // 
@@ -156,9 +155,9 @@
             // 
             panel2.Controls.Add(tableLayoutPanel3);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(323, 3);
+            panel2.Location = new Point(279, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(474, 594);
+            panel2.Size = new Size(518, 594);
             panel2.TabIndex = 1;
             // 
             // tableLayoutPanel3
@@ -166,40 +165,28 @@
             tableLayoutPanel3.ColumnCount = 1;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.Controls.Add(panel3, 0, 0);
+            tableLayoutPanel3.Controls.Add(addressControl, 0, 1);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(0, 0);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 2;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
-            tableLayoutPanel3.Size = new Size(474, 594);
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
+            tableLayoutPanel3.Size = new Size(518, 594);
             tableLayoutPanel3.TabIndex = 0;
             // 
             // panel3
             // 
-            panel3.Controls.Add(AddressTextBox);
             panel3.Controls.Add(NameTextBox);
             panel3.Controls.Add(IdTextBox);
-            panel3.Controls.Add(AddressLabel);
             panel3.Controls.Add(NameLabel);
             panel3.Controls.Add(IdLabel);
             panel3.Controls.Add(SelectedCustomersLabel);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(3, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(468, 231);
+            panel3.Size = new Size(512, 112);
             panel3.TabIndex = 0;
-            // 
-            // AddressTextBox
-            // 
-            AddressTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            AddressTextBox.Location = new Point(103, 97);
-            AddressTextBox.MaximumSize = new Size(450, 131);
-            AddressTextBox.Multiline = true;
-            AddressTextBox.Name = "AddressTextBox";
-            AddressTextBox.Size = new Size(362, 131);
-            AddressTextBox.TabIndex = 6;
-            AddressTextBox.TextChanged += AddressTextBox_TextChanged;
             // 
             // NameTextBox
             // 
@@ -208,7 +195,7 @@
             NameTextBox.MaximumSize = new Size(450, 23);
             NameTextBox.Multiline = true;
             NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(362, 23);
+            NameTextBox.Size = new Size(406, 23);
             NameTextBox.TabIndex = 5;
             NameTextBox.TextChanged += NameTextBox_TextChanged;
             // 
@@ -219,15 +206,6 @@
             IdTextBox.Name = "IdTextBox";
             IdTextBox.Size = new Size(130, 23);
             IdTextBox.TabIndex = 4;
-            // 
-            // AddressLabel
-            // 
-            AddressLabel.AutoSize = true;
-            AddressLabel.Location = new Point(18, 97);
-            AddressLabel.Name = "AddressLabel";
-            AddressLabel.Size = new Size(52, 15);
-            AddressLabel.TabIndex = 3;
-            AddressLabel.Text = "Address:";
             // 
             // NameLabel
             // 
@@ -256,6 +234,14 @@
             SelectedCustomersLabel.Size = new Size(119, 15);
             SelectedCustomersLabel.TabIndex = 0;
             SelectedCustomersLabel.Text = "Selected Customer";
+            // 
+            // addressControl
+            // 
+            addressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            addressControl.Location = new Point(3, 121);
+            addressControl.Name = "addressControl";
+            addressControl.Size = new Size(512, 300);
+            addressControl.TabIndex = 1;
             // 
             // CustomersTab
             // 
@@ -287,13 +273,12 @@
         private Button RemoveButton;
         private TableLayoutPanel tableLayoutPanel3;
         private Panel panel3;
-        private TextBox AddressTextBox;
         private TextBox NameTextBox;
         private TextBox IdTextBox;
-        private Label AddressLabel;
         private Label NameLabel;
         private Label IdLabel;
         private Label SelectedCustomersLabel;
         private Button EditButton;
+        private Controls.AddressControl addressControl;
     }
 }

@@ -1,11 +1,13 @@
 ﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.View.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,14 +26,24 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (!ValidateName() || !ValidateAddress())
+            if (!ValidateName())
             {
                 MessageBox.Show("Правильно заполните поля");
                 return;
             }
 
+            Address address;
+            try
+            {
+                address = addressControl.Address;
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string name = NameTextBox.Text;
-            string address = AddressTextBox.Text;
             Customer customer = new Customer(name, address);
 
             _customers.Add(customer);
@@ -42,7 +54,16 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
+            if (CustomersListBox.SelectedIndex < 0)
+            {
+                return;
+            }
 
+            int index = CustomersListBox.SelectedIndex;
+            _customers.RemoveAt(index);
+            CustomersListBox.Items.RemoveAt(index);
+
+            ClearTextBox();
         }
 
         private void CurtomersListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,7 +78,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             IdTextBox.Text = _currentCustomer.Id.ToString();
             NameTextBox.Text = _currentCustomer.FullName;
-            AddressTextBox.Text = _currentCustomer.Address;
+            addressControl.Address = _currentCustomer.Address;
         }
 
         private bool ValidateName()
@@ -72,57 +93,49 @@ namespace ObjectOrientedPractics.View.Tabs
             return true;
         }
 
-        private bool ValidateAddress()
-        {
-            if (string.IsNullOrWhiteSpace(AddressTextBox.Text))
-            {
-                AddressTextBox.BackColor = Color.LightPink;
-                return false;
-            }
-
-            AddressTextBox.BackColor = Color.White;
-
-            return true;
-        }
-
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             ValidateName();
-        }
-
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            ValidateAddress();
         }
 
         private void ClearTextBox()
         {
             _currentCustomer = null;
             NameTextBox.Clear();
-            AddressTextBox.Clear();
+            addressControl.Address = new Address();
 
             NameTextBox.BackColor = Color.White;
-            AddressTextBox.BackColor = Color.White;
         }
 
         private void EditButton_Click(object sender, EventArgs e)
         {
             if (_currentCustomer == null)
             {
-                MessageBox.Show("Выберите книгу для редактирования.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Выберите покупателя для редактирования.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            if (!ValidateAddress() || !ValidateName())
+            if (!ValidateName())
             {
                 MessageBox.Show("Правильно заполните поля", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Address address;
+            try
+            {
+                address = addressControl.Address;
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
                 _currentCustomer.FullName = NameTextBox.Text;
-                _currentCustomer.Address = AddressTextBox.Text;
+                _currentCustomer.Address = address;
 
                 int index = CustomersListBox.SelectedIndex;
                 CustomersListBox.Items[index] = _currentCustomer;
