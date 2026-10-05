@@ -47,8 +47,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void RemoveButton_click(object sender, EventArgs e)
         {
-            //TODO сделать чтобы при удалении id уменьшался
-
             if (ItemsListBox.SelectedIndex < 0)
             {
                 return;
