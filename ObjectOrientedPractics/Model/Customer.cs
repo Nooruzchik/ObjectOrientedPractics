@@ -9,7 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace ObjectOrientedPractics.Model
 {
-    internal class Customer
+    public class Customer
     {
         /// <summary>
         /// id.

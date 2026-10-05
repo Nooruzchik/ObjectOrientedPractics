@@ -19,9 +19,40 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Customer> _customers = new List<Customer>();
         private Customer _currentCustomer;
 
+        /// <summary>
+        /// Возвращает и задаёт список покупателей, отображаемых на вкладке.
+        /// </summary>
+        public List<Customer> Customers
+        {
+            get { return _customers; }
+            set
+            {
+                _customers = value;
+                UpdateListBox();
+            }
+        }
+
         public CustomersTab()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Обновляет содержимое <see cref="CustomersListBox"/> в соответствии с <see cref="_customers"/>.
+        /// </summary>
+        private void UpdateListBox()
+        {
+            CustomersListBox.Items.Clear();
+
+            if (_customers == null)
+            {
+                return;
+            }
+
+            foreach (Customer customer in _customers)
+            {
+                CustomersListBox.Items.Add(customer);
+            }
         }
 
         private void AddButton_Click(object sender, EventArgs e)

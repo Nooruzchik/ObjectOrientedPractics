@@ -26,13 +26,43 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private Item _currentItem;
 
-
+        /// <summary>
+        /// Возвращает и задаёт список товаров, отображаемых на вкладке.
+        /// </summary>
+        public List<Item> Items
+        {
+            get { return _items; }
+            set
+            {
+                _items = value;
+                UpdateListBox();
+            }
+        }
+       
         public ItemsTab()
         {
             InitializeComponent();
 
             // Заполняем ComboBox значениями перечисления Category
             CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
+        }
+
+        /// <summary>
+        /// Обновляет содержимое <see cref="ItemsListBox"/> в соответствии с <see cref="_items"/>.
+        /// </summary>
+        private void UpdateListBox()
+        {
+            ItemsListBox.Items.Clear();
+
+            if (_items == null)
+            {
+                return;
+            }
+
+            foreach (Item item in _items)
+            {
+                ItemsListBox.Items.Add(item);
+            }
         }
 
         private void AddButton_click(object sender, EventArgs e)

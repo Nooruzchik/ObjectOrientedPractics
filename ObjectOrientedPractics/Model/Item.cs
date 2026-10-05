@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace ObjectOrientedPractics.Model
 {
-    internal class Item
+    public class Item
     {
         /// <summary>
         /// id.
