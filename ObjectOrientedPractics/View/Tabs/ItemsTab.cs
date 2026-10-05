@@ -16,7 +16,14 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTab : UserControl
     {
+        /// <summary>
+        /// Список товаров, отображаемых на вкладке
+        /// </summary>
         private List<Item> _items = new List<Item>();
+
+        /// <summary>
+        /// Товар, выбранный в списке в данный момент
+        /// </summary>
         private Item _currentItem;
 
 
@@ -33,6 +40,13 @@ namespace ObjectOrientedPractics.View.Tabs
             if (!ValidateCost() || !ValidateName())
             {
                 MessageBox.Show("Правильно заполните поля!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (CategoryComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите категорию товара", "Внимание",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -155,6 +169,13 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
+            if (CategoryComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите категорию товара", "Внимание",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 _currentItem.Name = NameTextBox.Text;
@@ -172,6 +193,31 @@ namespace ObjectOrientedPractics.View.Tabs
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+        /// <summary>
+        /// Обрабатывает изменение выбранной категории в <see cref="CategoryComboBox"/>.
+        /// Записывает выбранную категорию в текущий товар.
+        /// </summary>
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Если товар не выбран или в ComboBox ничего не выбрано — ничего не делаем
+            if (_currentItem == null || CategoryComboBox.SelectedItem == null)
+            {
+                return;
+            }
+
+            // Сохраняем выбранную категорию в текущий товар
+            _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
+
+            // Обновляем отображение товара в списке
+            int index = ItemsListBox.SelectedIndex;
+            if (index >= 0)
+            {
+                ItemsListBox.Items[index] = _currentItem;
+                ItemsListBox.SelectedIndex = index;
             }
         }
     }

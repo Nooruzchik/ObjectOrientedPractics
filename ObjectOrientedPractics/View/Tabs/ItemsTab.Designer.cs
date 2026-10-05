@@ -183,6 +183,7 @@
             CategoryComboBox.Name = "CategoryComboBox";
             CategoryComboBox.Size = new Size(167, 23);
             CategoryComboBox.TabIndex = 10;
+            CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
             // 
             // CategoryLabel
             // 
