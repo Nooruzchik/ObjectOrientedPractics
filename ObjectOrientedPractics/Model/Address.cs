@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -155,6 +156,11 @@ namespace ObjectOrientedPractics.Model
             Street = street;
             Building = building;
             Apartment = apartment;
+        }
+
+        public override string ToString()
+        {
+            return $"{Country}: {City}: {Index}";
         }
     }
 }

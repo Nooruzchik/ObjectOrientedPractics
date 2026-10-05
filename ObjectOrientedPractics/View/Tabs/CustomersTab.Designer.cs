@@ -56,8 +56,8 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34.5F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65.5F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38.75F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 61.25F));
             tableLayoutPanel1.Controls.Add(panel1, 0, 0);
             tableLayoutPanel1.Controls.Add(panel2, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
@@ -76,7 +76,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(270, 594);
+            panel1.Size = new Size(304, 594);
             panel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -93,7 +93,7 @@
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(264, 50);
+            tableLayoutPanel2.Size = new Size(298, 50);
             tableLayoutPanel2.TabIndex = 2;
             // 
             // AddButton
@@ -101,7 +101,7 @@
             AddButton.Dock = DockStyle.Fill;
             AddButton.Location = new Point(3, 3);
             AddButton.Name = "AddButton";
-            AddButton.Size = new Size(82, 44);
+            AddButton.Size = new Size(93, 44);
             AddButton.TabIndex = 0;
             AddButton.Text = "Add";
             AddButton.UseVisualStyleBackColor = true;
@@ -110,9 +110,9 @@
             // RemoveButton
             // 
             RemoveButton.Dock = DockStyle.Fill;
-            RemoveButton.Location = new Point(91, 3);
+            RemoveButton.Location = new Point(102, 3);
             RemoveButton.Name = "RemoveButton";
-            RemoveButton.Size = new Size(82, 44);
+            RemoveButton.Size = new Size(93, 44);
             RemoveButton.TabIndex = 1;
             RemoveButton.Text = "Remove";
             RemoveButton.UseVisualStyleBackColor = true;
@@ -121,9 +121,9 @@
             // EditButton
             // 
             EditButton.Dock = DockStyle.Fill;
-            EditButton.Location = new Point(179, 3);
+            EditButton.Location = new Point(201, 3);
             EditButton.Name = "EditButton";
-            EditButton.Size = new Size(82, 44);
+            EditButton.Size = new Size(94, 44);
             EditButton.TabIndex = 2;
             EditButton.Text = "Edit";
             EditButton.UseVisualStyleBackColor = true;
@@ -137,7 +137,7 @@
             CustomersListBox.ItemHeight = 15;
             CustomersListBox.Location = new Point(3, 27);
             CustomersListBox.Name = "CustomersListBox";
-            CustomersListBox.Size = new Size(264, 509);
+            CustomersListBox.Size = new Size(298, 509);
             CustomersListBox.TabIndex = 1;
             CustomersListBox.SelectedIndexChanged += CurtomersListBox_SelectedIndexChanged;
             // 
@@ -155,9 +155,9 @@
             // 
             panel2.Controls.Add(tableLayoutPanel3);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(279, 3);
+            panel2.Location = new Point(313, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(518, 594);
+            panel2.Size = new Size(484, 594);
             panel2.TabIndex = 1;
             // 
             // tableLayoutPanel3
@@ -172,7 +172,7 @@
             tableLayoutPanel3.RowCount = 2;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
-            tableLayoutPanel3.Size = new Size(518, 594);
+            tableLayoutPanel3.Size = new Size(484, 594);
             tableLayoutPanel3.TabIndex = 0;
             // 
             // panel3
@@ -185,7 +185,7 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(3, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(512, 112);
+            panel3.Size = new Size(478, 112);
             panel3.TabIndex = 0;
             // 
             // NameTextBox
@@ -195,7 +195,7 @@
             NameTextBox.MaximumSize = new Size(450, 23);
             NameTextBox.Multiline = true;
             NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(406, 23);
+            NameTextBox.Size = new Size(372, 23);
             NameTextBox.TabIndex = 5;
             NameTextBox.TextChanged += NameTextBox_TextChanged;
             // 
@@ -204,6 +204,7 @@
             IdTextBox.Location = new Point(103, 36);
             IdTextBox.Multiline = true;
             IdTextBox.Name = "IdTextBox";
+            IdTextBox.ReadOnly = true;
             IdTextBox.Size = new Size(130, 23);
             IdTextBox.TabIndex = 4;
             // 
@@ -240,7 +241,7 @@
             addressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             addressControl.Location = new Point(3, 121);
             addressControl.Name = "addressControl";
-            addressControl.Size = new Size(512, 300);
+            addressControl.Size = new Size(478, 300);
             addressControl.TabIndex = 1;
             // 
             // CustomersTab
