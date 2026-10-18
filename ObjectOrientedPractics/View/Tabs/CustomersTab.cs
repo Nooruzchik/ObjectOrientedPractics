@@ -64,6 +64,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             Address address;
+
             try
             {
                 address = addressControl.Address;

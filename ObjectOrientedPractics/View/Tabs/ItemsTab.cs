@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Список товаров, отображаемых на вкладке
         /// </summary>
-        private List<Item> _items = new List<Item>();
+        private BindingList<Item> _items = new BindingList<Item>();
 
         /// <summary>
         /// Товар, выбранный в списке в данный момент
@@ -29,101 +29,69 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Возвращает и задаёт список товаров, отображаемых на вкладке.
         /// </summary>
-        public List<Item> Items
+        public BindingList<Item> Items
         {
             get { return _items; }
             set
             {
-                _items = value;
-                UpdateListBox();
+                _items = value ?? new BindingList<Item>();
+                ItemsListBox.DataSource = _items;
             }
         }
-       
+
         public ItemsTab()
         {
             InitializeComponent();
 
             // Заполняем ComboBox значениями перечисления Category
             CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
-        }
 
-        /// <summary>
-        /// Обновляет содержимое <see cref="ItemsListBox"/> в соответствии с <see cref="_items"/>.
-        /// </summary>
-        private void UpdateListBox()
-        {
-            ItemsListBox.Items.Clear();
-
-            if (_items == null)
-            {
-                return;
-            }
-
-            foreach (Item item in _items)
-            {
-                ItemsListBox.Items.Add(item);
-            }
+            // Один раз привязываем список — дальше всё обновляется само
+            ItemsListBox.DataSource = _items;
+            ItemsListBox.DisplayMember = nameof(Item.Name);
         }
 
         private void AddButton_click(object sender, EventArgs e)
         {
-            if (!ValidateCost() || !ValidateName())
+            if (!ValidateCost() || !ValidateName() || CategoryComboBox.SelectedItem == null)
             {
-                MessageBox.Show("Правильно заполните поля!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (CategoryComboBox.SelectedItem == null)
-            {
-                MessageBox.Show("Выберите категорию товара", "Внимание",
+                MessageBox.Show("Правильно заполните поля!", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            double cost = double.Parse(CostTextBox.Text);
-            string name = NameTextBox.Text;
-            string info = DescriptionTextBox.Text;
-
-            Item item = new Item(name, info, cost, (Category)CategoryComboBox.SelectedItem);
-
-
-            _items.Add(item);
-            ItemsListBox.Items.Add(item);
+            _items.Add(new Item(
+                NameTextBox.Text,
+                DescriptionTextBox.Text,
+                double.Parse(CostTextBox.Text),
+                (Category)CategoryComboBox.SelectedItem));
 
             ClearTextBox();
         }
 
         private void RemoveButton_click(object sender, EventArgs e)
         {
-            //TODO сделать чтобы при удалении id уменьшался
-
-            if (ItemsListBox.SelectedIndex < 0)
+            if (ItemsListBox.SelectedItem is Item item)
             {
-                return;
+                _items.Remove(item);
+                ClearTextBox();
             }
-
-            int index = ItemsListBox.SelectedIndex;
-            _items.RemoveAt(index);
-            ItemsListBox.Items.RemoveAt(index);
-
-            ClearTextBox();
         }
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ItemsListBox.SelectedIndex < 0)
+            if (ItemsListBox.SelectedItem is not Item item)
             {
                 ClearTextBox();
                 return;
             }
 
-            _currentItem = _items[ItemsListBox.SelectedIndex];
-
-            IdTextBox.Text = _currentItem.Id.ToString();
-            NameTextBox.Text = _currentItem.Name;
-            CostTextBox.Text = _currentItem.Cost.ToString();
-            DescriptionTextBox.Text = _currentItem.Info;
-            CategoryComboBox.SelectedItem = _currentItem.Category;
+            _currentItem = item;
+            IdTextBox.Text = item.Id.ToString();
+            NameTextBox.Text = item.Name;
+            CostTextBox.Text = item.Cost.ToString();
+            DescriptionTextBox.Text = item.Info;
+            CategoryComboBox.SelectedItem = item.Category;
         }
 
         private bool ValidateCost()
@@ -179,6 +147,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.Clear();
             DescriptionTextBox.Clear();
             CategoryComboBox.SelectedIndex = -1;
+            ItemsListBox.ClearSelected();
 
             NameTextBox.BackColor = Color.White;
             CostTextBox.BackColor = Color.White;
@@ -189,20 +158,13 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (_currentItem == null)
             {
-                MessageBox.Show("Выберите книгу для редактирования.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Выберите товар для редактирования.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            if (!ValidateCost() || !ValidateName())
+            if (!ValidateCost() || !ValidateName() || CategoryComboBox.SelectedItem == null)
             {
                 MessageBox.Show("Правильно заполните поля", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (CategoryComboBox.SelectedItem == null)
-            {
-                MessageBox.Show("Выберите категорию товара", "Внимание",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -214,9 +176,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
 
 
-                int index = ItemsListBox.SelectedIndex;
-                ItemsListBox.Items[index] = _currentItem;
-                ItemsListBox.SelectedIndex = index;
+                _items.ResetItem(_items.IndexOf(_currentItem));
 
                 ClearTextBox();
             }
@@ -239,16 +199,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            // Сохраняем выбранную категорию в текущий товар
             _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
-
-            // Обновляем отображение товара в списке
-            int index = ItemsListBox.SelectedIndex;
-            if (index >= 0)
-            {
-                ItemsListBox.Items[index] = _currentItem;
-                ItemsListBox.SelectedIndex = index;
-            }
+            _items.ResetItem(_items.IndexOf(_currentItem));
         }
     }
 }

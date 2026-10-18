@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Список товаров.
         /// </summary>
-        private List<Item> _items;
+        private BindingList<Item> _items = new BindingList<Item>();
 
         /// <summary>
         /// Список покупателей.
@@ -25,7 +26,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задаёт список товаров.
         /// </summary>
-        public List<Item> Items
+        public BindingList<Item> Items
         {
             get { return _items; }
             set { _items = value; }
@@ -46,7 +47,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Store()
         {
-            _items = new List<Item>();
+            _items = new BindingList<Item>();
             _customers = new List<Customer>();
         }
     }
