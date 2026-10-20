@@ -21,7 +21,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Список покупателей.
         /// </summary>
-        private List<Customer> _customers;
+        private BindingList<Customer> _customers = new BindingList<Customer>();
 
         /// <summary>
         /// Возвращает и задаёт список товаров.
@@ -35,7 +35,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задаёт список покупателей.
         /// </summary>
-        public List<Customer> Customers
+        public BindingList<Customer> Customers
         {
             get { return _customers; }
             set { _customers = value; }
@@ -48,7 +48,7 @@ namespace ObjectOrientedPractics.Model
         public Store()
         {
             _items = new BindingList<Item>();
-            _customers = new List<Customer>();
+            _customers = new BindingList<Customer>();
         }
     }
 }

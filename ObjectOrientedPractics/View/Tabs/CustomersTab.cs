@@ -16,43 +16,28 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CustomersTab : UserControl
     {
-        private List<Customer> _customers = new List<Customer>();
+        private BindingList<Customer> _customers = new BindingList<Customer>();
         private Customer _currentCustomer;
 
         /// <summary>
-        /// Возвращает и задаёт список покупателей, отображаемых на вкладке.
+        /// Список покупателей, отображаемых на вкладке.
         /// </summary>
-        public List<Customer> Customers
+        public BindingList<Customer> Customers
         {
             get { return _customers; }
             set
             {
-                _customers = value;
-                UpdateListBox();
+                _customers = value ?? new BindingList<Customer>();
+                CustomersListBox.DataSource = _customers;
             }
         }
 
         public CustomersTab()
         {
             InitializeComponent();
-        }
 
-        /// <summary>
-        /// Обновляет содержимое <see cref="CustomersListBox"/> в соответствии с <see cref="_customers"/>.
-        /// </summary>
-        private void UpdateListBox()
-        {
-            CustomersListBox.Items.Clear();
-
-            if (_customers == null)
-            {
-                return;
-            }
-
-            foreach (Customer customer in _customers)
-            {
-                CustomersListBox.Items.Add(customer);
-            }
+            
+            CustomersListBox.DataSource = _customers;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -64,22 +49,22 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             Address address;
-
             try
             {
                 address = addressControl.Address;
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             string name = NameTextBox.Text;
             Customer customer = new Customer(name, address);
 
+            // DataSource сам добавит строку в ListBox
             _customers.Add(customer);
-            CustomersListBox.Items.Add(customer);
 
             ClearTextBox();
         }
@@ -91,22 +76,21 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            int index = CustomersListBox.SelectedIndex;
-            _customers.RemoveAt(index);
-            CustomersListBox.Items.RemoveAt(index);
+            // DataSource сам удалит строку из ListBox
+            _customers.RemoveAt(CustomersListBox.SelectedIndex);
 
             ClearTextBox();
         }
 
         private void CurtomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CustomersListBox.SelectedIndex < 0)
+            _currentCustomer = CustomersListBox.SelectedItem as Customer;
+
+            if (_currentCustomer == null)
             {
                 ClearTextBox();
                 return;
             }
-
-            _currentCustomer = _customers[CustomersListBox.SelectedIndex];
 
             IdTextBox.Text = _currentCustomer.Id.ToString();
             NameTextBox.Text = _currentCustomer.FullName;
@@ -135,21 +119,24 @@ namespace ObjectOrientedPractics.View.Tabs
             _currentCustomer = null;
             NameTextBox.Clear();
             addressControl.Address = new Address();
-
             NameTextBox.BackColor = Color.White;
         }
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            if (_currentCustomer == null)
+            
+            var selected = CustomersListBox.SelectedItem as Customer;
+            if (selected == null)
             {
-                MessageBox.Show("Выберите покупателя для редактирования.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Выберите покупателя для редактирования.",
+                    "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             if (!ValidateName())
             {
-                MessageBox.Show("Правильно заполните поля", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Правильно заполните поля",
+                    "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -160,24 +147,27 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
-                _currentCustomer.FullName = NameTextBox.Text;
-                _currentCustomer.Address = address;
+                selected.FullName = NameTextBox.Text;
+                selected.Address = address;
 
                 int index = CustomersListBox.SelectedIndex;
-                CustomersListBox.Items[index] = _currentCustomer;
-                CustomersListBox.SelectedIndex = index;
 
+                _customers[index] = selected;
+
+                CustomersListBox.SelectedIndex = index;
                 ClearTextBox();
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
