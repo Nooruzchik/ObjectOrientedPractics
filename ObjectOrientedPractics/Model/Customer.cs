@@ -12,12 +12,12 @@ namespace ObjectOrientedPractics.Model
     public class Customer
     {
         /// <summary>
-        /// id.
+        /// Уникальный идентификатор покупателя.
         /// </summary>
         private readonly int _id;
 
         /// <summary>
-        /// имя. 
+        /// Полное имя покупателя.
         /// </summary>
         private string _fullname;
 
@@ -27,13 +27,20 @@ namespace ObjectOrientedPractics.Model
         private Address _address;
 
         /// <summary>
-        /// возварщает id.
+        /// Корзина покупателя.
         /// </summary>
-        public int Id { get { return _id; } }
-
+        private Cart _cart;
 
         /// <summary>
-        /// возвращает и задает имя.
+        /// Возвращает уникальный идентификатор покупателя.
+        /// </summary>
+        public int Id
+        {
+            get { return _id; }
+        }
+
+        /// <summary>
+        /// Возвращает и задает полное имя покупателя.
         /// </summary>
         public string FullName
         {
@@ -55,23 +62,33 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// создает экземпляр <see cref="Customer"/>
+        /// Возвращает или задает корзину покупателя.
+        /// </summary>
+        public Cart Cart
+        {
+            get { return _cart; }
+            set { _cart = value; }
+        }
+
+        /// <summary>
+        /// Создает экземпляр <see cref="Customer"/> с параметрами по умолчанию.
         /// </summary>
         public Customer()
         {
             _id = IdGenerator.GetNextId();
+            _cart = new Cart();
         }
 
-
         /// <summary>
-        /// создает экземпляр <see cref="Customer"/>
+        /// Создает экземпляр <see cref="Customer"/> с заданными параметрами.
         /// </summary>
-        /// <param name="fullname">имя товара</param>
-        /// <param name="address">авдрес товара</param>
+        /// <param name="fullname">Полное имя покупателя</param>
+        /// <param name="address">Адрес покупателя</param>
         public Customer(string fullname, Address address)
         {
             FullName = fullname;
             Address = address;
+            _cart = new Cart();
             _id = IdGenerator.GetNextId();
         }
 
