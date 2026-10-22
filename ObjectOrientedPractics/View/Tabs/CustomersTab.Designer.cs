@@ -145,7 +145,7 @@
             // 
             CustomersLabel.AutoSize = true;
             CustomersLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            CustomersLabel.Location = new Point(12, 9);
+            CustomersLabel.Location = new Point(3, 9);
             CustomersLabel.Name = "CustomersLabel";
             CustomersLabel.Size = new Size(71, 15);
             CustomersLabel.TabIndex = 0;

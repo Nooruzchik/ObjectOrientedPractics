@@ -6,10 +6,19 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Хранит список товаров, выбранных покупателем для оформления заказа.
+    /// </summary>
     public class Cart
     {
+        /// <summary>
+        /// Список товаров в корзине.
+        /// </summary>
         private List<Item> _items = new List<Item>();
 
+        /// <summary>
+        /// Возвращает и задаёт список товаров в корзине.
+        /// </summary>
         public List<Item> Items
         {
             get { return _items; }
@@ -19,6 +28,10 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает общую стоимость всех товаров в корзине.
+        /// Если список пуст или равен null, возвращает 0.0.
+        /// </summary>
         public double Amount
         {
             get

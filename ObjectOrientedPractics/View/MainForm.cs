@@ -14,10 +14,20 @@ namespace ObjectOrientedPractics
         public MainForm()
         {
             InitializeComponent();
+            _store = new Store();
 
             // Передаём данные из Store вкладкам
             itemTab1.Items = _store.Items;
             customerTab1.Customers = _store.Customers;
+
+            // Передаем данные в вкладку CartTab
+            cartsTab1.Items = _store.Items;
+            cartsTab1.Customers = _store.Customers;
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

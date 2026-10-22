@@ -1,6 +1,7 @@
 ﻿using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -30,6 +31,11 @@ namespace ObjectOrientedPractics.Model
         /// Корзина покупателя.
         /// </summary>
         private Cart _cart;
+
+        /// <summary>
+        /// Список заказов покупателя.
+        /// </summary>
+        private List<Order> _orders;
 
         /// <summary>
         /// Возвращает уникальный идентификатор покупателя.
@@ -71,12 +77,22 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
+        /// Возвращает и задает список заказов покупателя.
+        /// </summary>
+        public List<Order> Orders
+        {
+            get { return _orders; }
+            set { _orders = value; }
+        }
+
+        /// <summary>
         /// Создает экземпляр <see cref="Customer"/> с параметрами по умолчанию.
         /// </summary>
         public Customer()
         {
             _id = IdGenerator.GetNextId();
             _cart = new Cart();
+            _orders = new List<Order>();
         }
 
         /// <summary>
@@ -89,6 +105,7 @@ namespace ObjectOrientedPractics.Model
             FullName = fullname;
             Address = address;
             _cart = new Cart();
+            _orders = new List<Order>();
             _id = IdGenerator.GetNextId();
         }
 
