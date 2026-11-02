@@ -77,7 +77,7 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
         }
 
-        private void RefreshData()
+        public void RefreshData()
         {
             if (_items != null)
             {
@@ -211,12 +211,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void CustomersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _currentCustomer = CustomersComboBox.SelectedValue as Customer;
+            _currentCustomer = CustomersComboBox.SelectedItem as Customer;
 
             if (_currentCustomer == null)
             {
                 CartListBox.DataSource = null;
-                PriceLabel.Text = "0.0";
+                PriceLabel.Text = "0.00";
                 return;
             }
 

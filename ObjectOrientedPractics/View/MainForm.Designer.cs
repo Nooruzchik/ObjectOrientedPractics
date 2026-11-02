@@ -36,10 +36,13 @@
             customerTab1 = new ObjectOrientedPractics.View.Tabs.CustomersTab();
             tabPage3 = new TabPage();
             cartsTab1 = new ObjectOrientedPractics.View.Tabs.CartsTab();
+            tabPage4 = new TabPage();
+            orderTab1 = new ObjectOrientedPractics.View.Tabs.OrderTab();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -47,12 +50,14 @@
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage4);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(785, 598);
+            tabControl1.Size = new Size(984, 761);
             tabControl1.TabIndex = 0;
+            tabControl1.SelectedIndexChanged += TabControl_SelectedIndexChanged;
             // 
             // tabPage1
             // 
@@ -60,7 +65,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(777, 570);
+            tabPage1.Size = new Size(976, 733);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Item";
             tabPage1.UseVisualStyleBackColor = true;
@@ -70,7 +75,7 @@
             itemTab1.Dock = DockStyle.Fill;
             itemTab1.Location = new Point(3, 3);
             itemTab1.Name = "itemTab1";
-            itemTab1.Size = new Size(771, 564);
+            itemTab1.Size = new Size(970, 727);
             itemTab1.TabIndex = 0;
             // 
             // tabPage2
@@ -79,7 +84,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(777, 570);
+            tabPage2.Size = new Size(976, 733);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Customer";
             tabPage2.UseVisualStyleBackColor = true;
@@ -89,7 +94,7 @@
             customerTab1.Dock = DockStyle.Fill;
             customerTab1.Location = new Point(3, 3);
             customerTab1.Name = "customerTab1";
-            customerTab1.Size = new Size(771, 564);
+            customerTab1.Size = new Size(970, 727);
             customerTab1.TabIndex = 0;
             // 
             // tabPage3
@@ -97,9 +102,9 @@
             tabPage3.Controls.Add(cartsTab1);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(777, 570);
+            tabPage3.Size = new Size(976, 733);
             tabPage3.TabIndex = 2;
-            tabPage3.Text = "tabPage3";
+            tabPage3.Text = "Carts";
             tabPage3.UseVisualStyleBackColor = true;
             // 
             // cartsTab1
@@ -109,14 +114,33 @@
             cartsTab1.Items = null;
             cartsTab1.Location = new Point(0, 0);
             cartsTab1.Name = "cartsTab1";
-            cartsTab1.Size = new Size(777, 570);
+            cartsTab1.Size = new Size(976, 733);
             cartsTab1.TabIndex = 0;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(orderTab1);
+            tabPage4.Location = new Point(4, 24);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Size = new Size(976, 733);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "Orders";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // orderTab1
+            // 
+            orderTab1.Customers = null;
+            orderTab1.Dock = DockStyle.Fill;
+            orderTab1.Location = new Point(0, 0);
+            orderTab1.Name = "orderTab1";
+            orderTab1.Size = new Size(976, 733);
+            orderTab1.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(785, 598);
+            ClientSize = new Size(984, 761);
             Controls.Add(tabControl1);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -125,6 +149,7 @@
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -137,5 +162,7 @@
         private TabPage tabPage3;
         private View.Tabs.ItemsTab itemTab1;
         private View.Tabs.CartsTab cartsTab1;
+        private TabPage tabPage4;
+        private View.Tabs.OrderTab orderTab1;
     }
 }

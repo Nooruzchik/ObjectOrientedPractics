@@ -185,13 +185,13 @@
             // PriceLabel
             // 
             PriceLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            PriceLabel.AutoSize = true;
             PriceLabel.Font = new Font("Segoe UI Black", 24F, FontStyle.Bold);
-            PriceLabel.Location = new Point(413, 297);
+            PriceLabel.Location = new Point(279, 297);
             PriceLabel.Name = "PriceLabel";
-            PriceLabel.Size = new Size(68, 45);
+            PriceLabel.Size = new Size(202, 45);
             PriceLabel.TabIndex = 5;
             PriceLabel.Text = "0,0";
+            PriceLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
             // AmountLabel
             // 
