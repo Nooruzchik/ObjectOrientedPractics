@@ -98,6 +98,8 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        public Order() { }
+
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Order"/>.
         /// </summary>
