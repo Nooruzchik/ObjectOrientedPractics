@@ -110,12 +110,10 @@ namespace ObjectOrientedPractics.Model
             _deliveryAddress = deliveryAddress;
             _status = OrderStatus.New;
 
-            // Инициализируем список, чтобы избежать NullReferenceException
             _items = new List<Item>();
 
             if (items != null)
             {
-                // Используем AddRange для более лаконичного добавления
                 _items.AddRange(items);
             }
         }

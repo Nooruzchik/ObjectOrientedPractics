@@ -87,7 +87,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
                     _allOrders.Add(order);
 
-                    // Добавляем строку в DataGridView (индексы столбцов: 0-Id, 1-Дата, 2-ФИО, 3-Адрес, 4-Цена, 5-Статус)
                     OrdersDataGridView.Rows.Add(order.Id, order.CreationDate.ToString("g"),
                         _customers[i].FullName, addressStr, order.TotalCost.ToString("C2"), order.Status);
                 }

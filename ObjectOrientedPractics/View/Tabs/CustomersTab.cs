@@ -27,7 +27,11 @@ namespace ObjectOrientedPractics.View.Tabs
             get { return _customers; }
             set
             {
-                _customers = value ?? new BindingList<Customer>();
+                if (value != null)
+                    _customers = value;
+                else
+                    _customers = new BindingList<Customer>();
+
                 CustomersListBox.DataSource = _customers;
             }
         }
