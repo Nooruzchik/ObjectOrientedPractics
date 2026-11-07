@@ -40,7 +40,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
 
-            
+
             CustomersListBox.DataSource = _customers;
         }
 
@@ -86,7 +86,7 @@ namespace ObjectOrientedPractics.View.Tabs
             ClearTextBox();
         }
 
-        private void CurtomersListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentCustomer = CustomersListBox.SelectedItem as Customer;
 
@@ -99,6 +99,8 @@ namespace ObjectOrientedPractics.View.Tabs
             IdTextBox.Text = _currentCustomer.Id.ToString();
             NameTextBox.Text = _currentCustomer.FullName;
             addressControl.Address = _currentCustomer.Address;
+
+            IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
         }
 
         private bool ValidateName()
@@ -124,11 +126,14 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.Clear();
             addressControl.Address = new Address();
             NameTextBox.BackColor = Color.White;
+
+            // сброс галочки, чтобы она не переходила на пустую форму
+            IsPriorityCheckBox.Checked = false;
         }
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            
+
             var selected = CustomersListBox.SelectedItem as Customer;
             if (selected == null)
             {
@@ -172,6 +177,14 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 MessageBox.Show(ex.Message, "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_currentCustomer != null)
+            {
+                _currentCustomer.IsPriority = IsPriorityCheckBox.Checked;
             }
         }
     }

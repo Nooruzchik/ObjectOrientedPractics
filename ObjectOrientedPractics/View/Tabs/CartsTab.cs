@@ -154,7 +154,23 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             // Создаем заказ
-            var newOrder = new Order(_currentCustomer.Address, _currentCustomer.Cart.Items.ToList());
+            Order newOrder;
+
+            // Проверка на приоритетность
+            if (_currentCustomer.IsPriority)
+            {
+                newOrder = new PriorityOrder(
+                    _currentCustomer.Address,
+                    _currentCustomer.Cart.Items.ToList(),
+                    DateTime.Now.AddDays(1),
+                    DeliveryTime.NineToEleven 
+                );
+            }
+            else
+            {
+                // создаем обычный Order
+                newOrder = new Order(_currentCustomer.Address, _currentCustomer.Cart.Items.ToList());
+            }
 
             // Добавляем заказ в список заказов покупателя
             _currentCustomer.Orders.Add(newOrder);

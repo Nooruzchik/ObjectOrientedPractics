@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            ClearOrdeButtonr = new Button();
+            ClearOrderButton = new Button();
             RemoveItemButton = new Button();
             AddItemButton = new Button();
             PriceLabel = new Label();
@@ -52,7 +52,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(ClearOrdeButtonr);
+            panel1.Controls.Add(ClearOrderButton);
             panel1.Controls.Add(RemoveItemButton);
             panel1.Controls.Add(AddItemButton);
             panel1.Controls.Add(PriceLabel);
@@ -73,39 +73,43 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(800, 800);
+            panel1.Size = new Size(800, 734);
             panel1.TabIndex = 0;
             // 
-            // ClearOrdeButtonr
+            // ClearOrderButton
             // 
-            ClearOrdeButtonr.Location = new Point(641, 712);
-            ClearOrdeButtonr.Name = "ClearOrdeButtonr";
-            ClearOrdeButtonr.Size = new Size(150, 50);
-            ClearOrdeButtonr.TabIndex = 17;
-            ClearOrdeButtonr.Text = "Clear Order";
-            ClearOrdeButtonr.UseVisualStyleBackColor = true;
+            ClearOrderButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ClearOrderButton.Location = new Point(647, 675);
+            ClearOrderButton.Name = "ClearOrderButton";
+            ClearOrderButton.Size = new Size(150, 50);
+            ClearOrderButton.TabIndex = 17;
+            ClearOrderButton.Text = "Clear Order";
+            ClearOrderButton.UseVisualStyleBackColor = true;
+            ClearOrderButton.Click += ClearOrderButton_Click;
             // 
             // RemoveItemButton
             // 
-            RemoveItemButton.Location = new Point(186, 712);
+            RemoveItemButton.Location = new Point(188, 675);
             RemoveItemButton.Name = "RemoveItemButton";
             RemoveItemButton.Size = new Size(150, 50);
             RemoveItemButton.TabIndex = 16;
             RemoveItemButton.Text = "Remove Item";
             RemoveItemButton.UseVisualStyleBackColor = true;
+            RemoveItemButton.Click += RemoveItemButton_Click;
             // 
             // AddItemButton
             // 
-            AddItemButton.Location = new Point(3, 712);
+            AddItemButton.Location = new Point(3, 675);
             AddItemButton.Name = "AddItemButton";
             AddItemButton.Size = new Size(150, 50);
             AddItemButton.TabIndex = 15;
             AddItemButton.Text = "Add Item";
             AddItemButton.UseVisualStyleBackColor = true;
+            AddItemButton.Click += AddItemButton_Click;
             // 
             // PriceLabel
             // 
-            PriceLabel.Anchor = AnchorStyles.Right;
+            PriceLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             PriceLabel.Font = new Font("Segoe UI Black", 24F, FontStyle.Bold);
             PriceLabel.Location = new Point(604, 623);
             PriceLabel.Name = "PriceLabel";
@@ -116,6 +120,7 @@
             // 
             // AmountLabel
             // 
+            AmountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold);
             AmountLabel.Location = new Point(719, 608);
@@ -126,6 +131,7 @@
             // 
             // OrderItemsListBox
             // 
+            OrderItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrderItemsListBox.FormattingEnabled = true;
             OrderItemsListBox.ItemHeight = 15;
             OrderItemsListBox.Location = new Point(3, 394);
@@ -150,6 +156,7 @@
             DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
             DeliveryTimeComboBox.Size = new Size(195, 23);
             DeliveryTimeComboBox.TabIndex = 10;
+            DeliveryTimeComboBox.SelectedIndexChanged += deliveryTimeComboBox_SelectedIndexChanged;
             // 
             // CreatedTextBox
             // 
@@ -168,6 +175,7 @@
             StatusComboBox.Name = "StatusComboBox";
             StatusComboBox.Size = new Size(195, 23);
             StatusComboBox.TabIndex = 8;
+            StatusComboBox.SelectedIndexChanged += statusComboBox_SelectedIndexChanged;
             // 
             // IdTextBox
             // 
@@ -247,7 +255,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel1);
             Name = "PriorityOrdersTab";
-            Size = new Size(800, 800);
+            Size = new Size(800, 734);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -271,7 +279,7 @@
         private Label OrderItemsLabel;
         private Label AmountLabel;
         private Label PriceLabel;
-        private Button ClearOrdeButtonr;
+        private Button ClearOrderButton;
         private Button RemoveItemButton;
         private Button AddItemButton;
     }

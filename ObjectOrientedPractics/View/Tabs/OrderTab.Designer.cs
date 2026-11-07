@@ -39,6 +39,9 @@
             Cost = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
+            DeliveryTimeComboBox = new ComboBox();
+            DeliveryTimeLabel = new Label();
+            PriorityOptionsLabel = new Label();
             PriceLabel = new Label();
             AmountLabel = new Label();
             OrderItemsListBox = new ListBox();
@@ -51,10 +54,12 @@
             IDLabel = new Label();
             SelectedOrderLavel = new Label();
             addressControl1 = new ObjectOrientedPractics.View.Controls.AddressControl();
+            priorityOptionsPanel = new Panel();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).BeginInit();
             panel2.SuspendLayout();
+            priorityOptionsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -135,6 +140,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(priorityOptionsPanel);
             panel2.Controls.Add(PriceLabel);
             panel2.Controls.Add(AmountLabel);
             panel2.Controls.Add(OrderItemsListBox);
@@ -152,6 +158,35 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(544, 794);
             panel2.TabIndex = 1;
+            // 
+            // DeliveryTimeComboBox
+            // 
+            DeliveryTimeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            DeliveryTimeComboBox.FormattingEnabled = true;
+            DeliveryTimeComboBox.Location = new Point(88, 42);
+            DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
+            DeliveryTimeComboBox.Size = new Size(141, 23);
+            DeliveryTimeComboBox.TabIndex = 15;
+            DeliveryTimeComboBox.SelectedIndexChanged += DeliveryTimeComboBox_SelectedIndexChanged;
+            // 
+            // DeliveryTimeLabel
+            // 
+            DeliveryTimeLabel.AutoSize = true;
+            DeliveryTimeLabel.Location = new Point(3, 45);
+            DeliveryTimeLabel.Name = "DeliveryTimeLabel";
+            DeliveryTimeLabel.Size = new Size(79, 15);
+            DeliveryTimeLabel.TabIndex = 14;
+            DeliveryTimeLabel.Text = "Delivery Time";
+            // 
+            // PriorityOptionsLabel
+            // 
+            PriorityOptionsLabel.AutoSize = true;
+            PriorityOptionsLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold);
+            PriorityOptionsLabel.Location = new Point(3, 9);
+            PriorityOptionsLabel.Name = "PriorityOptionsLabel";
+            PriorityOptionsLabel.Size = new Size(104, 15);
+            PriorityOptionsLabel.TabIndex = 13;
+            PriorityOptionsLabel.Text = "Priority Options";
             // 
             // PriceLabel
             // 
@@ -270,6 +305,16 @@
             addressControl1.Size = new Size(537, 214);
             addressControl1.TabIndex = 0;
             // 
+            // priorityOptionsPanel
+            // 
+            priorityOptionsPanel.Controls.Add(DeliveryTimeLabel);
+            priorityOptionsPanel.Controls.Add(PriorityOptionsLabel);
+            priorityOptionsPanel.Controls.Add(DeliveryTimeComboBox);
+            priorityOptionsPanel.Location = new Point(297, 5);
+            priorityOptionsPanel.Name = "priorityOptionsPanel";
+            priorityOptionsPanel.Size = new Size(243, 100);
+            priorityOptionsPanel.TabIndex = 16;
+            // 
             // OrderTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -283,6 +328,8 @@
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            priorityOptionsPanel.ResumeLayout(false);
+            priorityOptionsPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -311,5 +358,9 @@
         private DataGridViewTextBoxColumn Address;
         private DataGridViewTextBoxColumn Cost;
         private DataGridViewTextBoxColumn Status;
+        private Label PriorityOptionsLabel;
+        private ComboBox DeliveryTimeComboBox;
+        private Label DeliveryTimeLabel;
+        private Panel priorityOptionsPanel;
     }
 }

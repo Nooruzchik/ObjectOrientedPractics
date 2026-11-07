@@ -39,6 +39,7 @@
             panel2 = new Panel();
             tableLayoutPanel3 = new TableLayoutPanel();
             panel3 = new Panel();
+            IsPriorityCheckBox = new CheckBox();
             NameTextBox = new TextBox();
             IdTextBox = new TextBox();
             NameLabel = new Label();
@@ -139,7 +140,7 @@
             CustomersListBox.Name = "CustomersListBox";
             CustomersListBox.Size = new Size(298, 509);
             CustomersListBox.TabIndex = 1;
-            CustomersListBox.SelectedIndexChanged += CurtomersListBox_SelectedIndexChanged;
+            CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
             // 
             // CustomersLabel
             // 
@@ -170,13 +171,14 @@
             tableLayoutPanel3.Location = new Point(0, 0);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 2;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 75F));
             tableLayoutPanel3.Size = new Size(484, 594);
             tableLayoutPanel3.TabIndex = 0;
             // 
             // panel3
             // 
+            panel3.Controls.Add(IsPriorityCheckBox);
             panel3.Controls.Add(NameTextBox);
             panel3.Controls.Add(IdTextBox);
             panel3.Controls.Add(NameLabel);
@@ -185,8 +187,19 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(3, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(478, 112);
+            panel3.Size = new Size(478, 142);
             panel3.TabIndex = 0;
+            // 
+            // IsPriorityCheckBox
+            // 
+            IsPriorityCheckBox.AutoSize = true;
+            IsPriorityCheckBox.Location = new Point(103, 94);
+            IsPriorityCheckBox.Name = "IsPriorityCheckBox";
+            IsPriorityCheckBox.Size = new Size(75, 19);
+            IsPriorityCheckBox.TabIndex = 6;
+            IsPriorityCheckBox.Text = "Is Priority";
+            IsPriorityCheckBox.UseVisualStyleBackColor = true;
+            IsPriorityCheckBox.CheckedChanged += IsPriorityCheckBox_CheckedChanged;
             // 
             // NameTextBox
             // 
@@ -239,7 +252,7 @@
             // addressControl
             // 
             addressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            addressControl.Location = new Point(3, 121);
+            addressControl.Location = new Point(3, 151);
             addressControl.Name = "addressControl";
             addressControl.Size = new Size(478, 300);
             addressControl.TabIndex = 1;
@@ -281,5 +294,6 @@
         private Label SelectedCustomersLabel;
         private Button EditButton;
         private Controls.AddressControl addressControl;
+        private CheckBox IsPriorityCheckBox;
     }
 }

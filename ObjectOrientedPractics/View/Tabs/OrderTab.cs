@@ -30,6 +30,11 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private Order _currentOrder;
 
+        /// <summary>
+        /// Текущий выбранный приоритетный заказ (если выбранный заказ является приоритетным)
+        /// </summary>
+        private PriorityOrder _selectedPriorityOrder;
+
         public BindingList<Customer> Customers
         {
             get { return _customers; }
@@ -54,6 +59,10 @@ namespace ObjectOrientedPractics.View.Tabs
             OrdersDataGridView.ReadOnly = true;
             OrdersDataGridView.MultiSelect = false;
             OrdersDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            DeliveryTimeComboBox.DataSource = Enum.GetValues(typeof(DeliveryTime));
+            DeliveryTimeComboBox.Visible = false; // скрываем comboBox
+            priorityOptionsPanel.Visible = false; // Скрываем всю панель
 
             // Запрет сортировки по клику (чтобы индексы не путались)
             foreach (DataGridViewColumn column in OrdersDataGridView.Columns)
@@ -96,12 +105,16 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ClearOrderInfo()
         {
             _currentOrder = null;
+            _selectedPriorityOrder = null;
             IdTextBox.Clear();
             CreatedTextBox.Clear();
             StatusComboBox.SelectedIndex = -1;
             addressControl1.Address = new Address();
             OrderItemsListBox.DataSource = null;
             PriceLabel.Text = "0,00";
+
+            DeliveryTimeComboBox.Visible = false;
+            priorityOptionsPanel.Visible = false;
         }
 
         public void RefreshData()
@@ -134,6 +147,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _currentOrder = _allOrders[rowIndex];
 
+            // Проверяем, является ли заказ приоритетным
+            _selectedPriorityOrder = _currentOrder as PriorityOrder;
+
             // Заполняем правую панель
             IdTextBox.Text = _currentOrder.Id.ToString();
             CreatedTextBox.Text = _currentOrder.CreationDate.ToString("g");
@@ -145,6 +161,20 @@ namespace ObjectOrientedPractics.View.Tabs
             OrderItemsListBox.DisplayMember = nameof(Item.Name);
 
             PriceLabel.Text = _currentOrder.TotalCost.ToString("C2");
+
+            // Показываем или скрываем панель
+            if (_selectedPriorityOrder != null)
+            {
+                DeliveryTimeComboBox.Visible = true;
+                priorityOptionsPanel.Visible = true; 
+
+                DeliveryTimeComboBox.SelectedItem = _selectedPriorityOrder.DeliveryTime;
+            }
+            else
+            {
+                DeliveryTimeComboBox.Visible = false;
+                priorityOptionsPanel.Visible = false;
+            }
         }
 
         private void StatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -160,6 +190,14 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 int rowIndex = OrdersDataGridView.SelectedRows[0].Index;
                 OrdersDataGridView.Rows[rowIndex].Cells[5].Value = _currentOrder.Status;
+            }
+        }
+
+        private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_selectedPriorityOrder != null && DeliveryTimeComboBox.SelectedItem is DeliveryTime selectedTime)
+            {
+                _selectedPriorityOrder.DeliveryTime = selectedTime;
             }
         }
     }
